@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - CineMax</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation (same as index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <!-- Copy from index.html -->
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Movies</li>
+                </ol>
+            </nav>
+            <h1 class="fw-bold">All Movies</h1>
+            <p class="lead">Browse our extensive collection of movies</p>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search movies...">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select">
+                        <option selected>Filter by Genre</option>
+                        <option>Action</option>
+                        <option>Comedy</option>
+                        <option>Drama</option>
+                        <option>Sci-Fi</option>
+                        <option>Horror</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Movie cards would be dynamically loaded here -->
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card movie-card">
+                        <img src="https://via.placeholder.com/300x450" class="card-img-top movie-poster" alt="Movie Poster">
+                        <div class="card-body">
+                            <h5 class="card-title">Movie Title 1</h5>
+                            <div class="mb-2">
+                                <span class="rating"><i class="fas fa-star"></i> 8.5</span>
+                                <span class="ms-2">2023</span>
+                            </div>
+                            <a href="single-movie.html" class="btn btn-sm btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other movies -->
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <!-- Copy from index.html -->
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
