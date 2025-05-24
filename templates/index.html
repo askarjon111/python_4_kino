@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Welcome to CineMax</h1>
+            <p class="lead">Discover the latest movies, TV shows and more</p>
+            <a href="movies.html" class="btn btn-primary btn-lg mt-3">Explore Movies</a>
+        </div>
+    </section>
+
+    <!-- Now Playing Section -->
+    <section class="now-playing py-5 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Now Playing</h2>
+                <a href="movies.html" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row">
+                <!-- Movie cards would be dynamically loaded here -->
+                <div class="col-md-4 col-lg-3">
+                    <div class="card movie-card">
+                        <img src="https://unsplash.com/photos/a-building-with-a-red-awning-and-fire-hydrant-x-fSCpsVkCE" class="card-img-top movie-poster" alt="Movie Poster">
+                        <div class="card-body">
+                            <h5 class="card-title">Movie Title 1</h5>
+                            <div class="mb-2">
+                                <span class="rating"><i class="fas fa-star"></i> 8.5</span>
+                                <span class="ms-2">2023</span>
+                            </div>
+                            <a href="single-movie.html" class="btn btn-sm btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other movies -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Movies Section -->
+    <section class="upcoming-movies py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Coming Soon</h2>
+                <a href="movies.html?filter=upcoming" class="btn btn-outline-primary">View All</a>
+            </div>
+            <div class="row">
+                <!-- Upcoming movie cards would be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+{% endblock content %}
