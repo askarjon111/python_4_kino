@@ -48,7 +48,7 @@
                                 <span class="rating"><i class="fas fa-star"></i> 8.5</span>
                                 <span class="ms-2">{{ movie.release_date }}</span>
                             </div>
-                            <a href="single-movie.html" class="btn btn-sm btn-primary">Details</a>
+                            <a href="{% url 'single_movie' movie.pk %}" class="btn btn-sm btn-primary">Details</a>
                         </div>
                     </div>
                 </div>
