@@ -31,9 +31,9 @@
                     </div>
                     
                     <div class="mb-4">
-                        <span class="badge bg-primary genre-badge">Action</span>
-                        <span class="badge bg-primary genre-badge">Adventure</span>
-                        <span class="badge bg-primary genre-badge">Sci-Fi</span>
+                        {% for genre in movie.genres.all %}
+                        <span class="badge bg-primary genre-badge">{{ genre.name }}</span>
+                        {% endfor %}
                     </div>
                     
                     <h3 class="mt-4">Overview</h3>
@@ -68,7 +68,7 @@
                 <div class="col-12">
                     <h3 class="mb-4">Trailer</h3>
                     <div class="trailer-container rounded">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="{{ movie.trailer_set.all.0.youtube_url }}" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -78,13 +78,15 @@
                 <div class="col-12">
                     <h3 class="mb-4">Cast</h3>
                     <div class="row">
+                        {% for actor in movie.cast.all %}
                         <div class="col-6 col-md-3 col-lg-2">
                             <div class="cast-member">
-                                <img src="https://via.placeholder.com/100x100" class="img-fluid rounded-circle" alt="Actor">
-                                <h6 class="mb-0">Actor Name</h6>
+                                <img src="{{ actor.picture.url }}" class="img-fluid rounded-circle" alt="{{ actor }}">
+                                <h6 class="mb-0">{{ actor }}</h6>
                                 <small class="text-muted">Character</small>
                             </div>
                         </div>
+                        {% endfor %}
                         <!-- Repeat for other cast members -->
                     </div>
                 </div>
