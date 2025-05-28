@@ -40,3 +40,14 @@ class Trailer(BaseModel):
 
     def __str__(self):
         return f"{self.title} - {self.movie.title}"
+
+
+class Review(BaseModel):
+    rating = models.SmallIntegerField(default=1)
+    comment = models.TextField(blank=True, null=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=200)
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.movie} - {self.rating}"

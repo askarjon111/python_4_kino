@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
-from apps.movies.models import Movie
+from apps.movies.models import Movie, Review
 
 
 def movies_view(request):
@@ -15,3 +16,19 @@ def movies_view(request):
 def single_movie_view(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
     return render(request, 'movie.html', context={'movie': movie})
+
+
+def add_review_view(request, pk):
+    comment = request.POST.get('comment')
+    rating = int(request.POST.get('rating'))
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    movie = Movie.objects.get(id=pk)
+
+    Review.objects.create(comment=comment,
+                          rating=rating,
+                          name=name,
+                          email=email,
+                          movie=movie)
+
+    return redirect(reverse('single_movie', kwargs={'pk': pk}))

@@ -64,6 +64,7 @@
             </div>
             
             <!-- Trailer Section -->
+            {% if movie.trailer_set.all.0.youtube_url %}
             <div class="row mt-5">
                 <div class="col-12">
                     <h3 class="mb-4">Trailer</h3>
@@ -72,6 +73,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             
             <!-- Cast Section -->
             <div class="row mt-5">
@@ -89,6 +91,38 @@
                         {% endfor %}
                         <!-- Repeat for other cast members -->
                     </div>
+                </div>
+            </div>
+
+            <!-- Add Review Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">Leave a Review</h3>
+                    <form method="post" action="{% url 'add_review' movie.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <select class="form-select" id="rating" name="rating" required>
+                                <option value="">Choose...</option>
+                                {% for i in "12345678910"|make_list %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Review</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
                 </div>
             </div>
             
