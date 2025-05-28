@@ -35,8 +35,8 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search movies...">
+                <form class="d-flex" method='GET' action="{% url 'movies_list' %}">
+                    <input class="form-control me-2" name='search' type="search" placeholder="Search movies...">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
