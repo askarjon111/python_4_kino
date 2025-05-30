@@ -32,6 +32,10 @@ class Movie(BaseModel):
     def __str__(self):
         return self.title
 
+    @property
+    def views_count(self):
+        views = self.movieview_set.count()
+        return views
 
 class Trailer(BaseModel):
     title = models.CharField(max_length=500)
