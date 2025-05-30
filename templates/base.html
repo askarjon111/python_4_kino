@@ -15,30 +15,36 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">CineMax</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'movies_list' %}">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                <form class="d-flex" method='GET' action="{% url 'movies_list' %}">
-                    <input class="form-control me-2" name='search' type="search" placeholder="Search movies...">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'movies_list' %}">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+
+            <form class="d-flex me-3" method="GET" action="{% url 'movies_list' %}">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search movies...">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+
+            <div class="d-flex">
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+                {% else %}
+                <div class="col-md-6 text-center text-md-start">
+                <p class='text-white'>Welcome <a href=""> {{ request.user.username }}</a></p>
+                </div>
+                {% endif %}
             </div>
         </div>
     </nav>
