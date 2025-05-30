@@ -24,7 +24,9 @@
                 <div class="col-md-8">
                     <h1 class="fw-bold">{{ movie.title }}</h1>
                     <div class="mb-3">
+                        {% if rating %}
                         <span class="rating fs-4"><i class="fas fa-star"></i> {{ rating }}/10</span>
+                        {% endif %}
                         <span class="ms-3">{{ movie.release_date.year }}</span>
                         <span class="ms-3">{{ movie.duration }}</span>
                         <span class="ms-3">PG-13</span>
@@ -94,6 +96,26 @@
                 </div>
             </div>
 
+                        <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">Reviews</h3>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="mb-4 border rounded p-3">
+                                <div class="d-flex justify-content-between">
+                                    <h5>{{ review.name }}</h5>
+                                    <small class="text-muted">{{ review.created_at|date:"F j, Y, g:i a" }}</small>
+                                </div>
+                                <p class="mb-1"><strong>Rating:</strong> {{ review.rating }}/5</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reviews yet. Be the first to leave one!</p>
+                    {% endif %}
+                </div>
+            </div>
+
             <!-- Add Review Section -->
             <div class="row mt-5">
                 <div class="col-12">
@@ -112,8 +134,8 @@
                             <label for="rating" class="form-label">Rating</label>
                             <select class="form-select" id="rating" name="rating" required>
                                 <option value="">Choose...</option>
-                                {% for i in "12345678910"|make_list %}
-                                <option value="{{ i }}">{{ i }}</option>
+                                {% for i in ratings %}
+                                    <option value="{{ i }}">{{ i }}</option>
                                 {% endfor %}
                             </select>
                         </div>

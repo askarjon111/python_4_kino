@@ -16,13 +16,17 @@ def movies_view(request):
 
 def single_movie_view(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
-    rating = Review.objects.filter(movie=movie).aggregate(Avg('rating'))
-    return render(request, 'movie.html', context={'movie': movie, 'rating': rating['rating__avg']})
+    reviews = Review.objects.filter(movie=movie)
+    rating = reviews.aggregate(Avg('rating'))
+    return render(request, 'movie.html', context={'movie': movie,
+                                                  'rating': rating['rating__avg'],
+                                                  'ratings':  range(1, 11),
+                                                  'reviews': reviews})
 
 
 def add_review_view(request, pk):
     comment = request.POST.get('comment')
-    rating = int(request.POST.get('rating'))
+    rating = request.POST.get('rating')
     name = request.POST.get('name')
     email = request.POST.get('email')
     movie = Movie.objects.get(id=pk)
