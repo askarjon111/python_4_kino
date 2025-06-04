@@ -28,6 +28,7 @@ class Movie(BaseModel):
     poster = models.ImageField(upload_to='movies/poster', blank=True, null=True)
     cast = models.ManyToManyField(Actor)
     genres = models.ManyToManyField(Genre)
+    video = models.FileField(upload_to='movies/movie_files', blank=True, null=True)
 
     def __str__(self):
         return self.title

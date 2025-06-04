@@ -76,6 +76,18 @@
                 </div>
             </div>
             {% endif %}
+
+            <!-- Video Section -->
+            {% if movie.video %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">Movie</h3>
+                    <div class="trailer-container rounded">
+                        <video src="{{ movie.video.url }}" autoplay="False" controls></video>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             
             <!-- Cast Section -->
             <div class="row mt-5">
