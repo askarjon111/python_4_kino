@@ -1,9 +1,11 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.utils import timezone
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.db.models import Avg
+from django.core.paginator import Paginator
+
 
 from apps.meta.models import MovieView
 from apps.movies.models import Movie, Review
@@ -16,7 +18,10 @@ def movies_view(request):
         movies = Movie.objects.filter(title__icontains=search)
     else:
         movies = Movie.objects.all()
-    return render(request, 'movies.html', context={'movies': movies})
+    paginator = Paginator(movies, 20)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'movies.html', context={'movies': movies, 'page_obj': page_obj})
 
 
 def single_movie_view(request, pk):

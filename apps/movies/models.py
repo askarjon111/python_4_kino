@@ -38,6 +38,10 @@ class Movie(BaseModel):
         views = self.movieview_set.count()
         return views
 
+    class Meta:
+        ordering = ['-id']
+
+
 class Trailer(BaseModel):
     title = models.CharField(max_length=500)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

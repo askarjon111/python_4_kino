@@ -38,7 +38,7 @@
             
             <div class="row">
                 <!-- Movie cards would be dynamically loaded here -->
-                {% for movie in movies %}
+                {% for movie in page_obj %}
                 <div class="col-md-4 col-lg-3 mb-4">
                     <div class="card movie-card">
                         <img src="{{ movie.poster.url }}" class="card-img-top movie-poster" alt="Movie Poster">
@@ -59,17 +59,36 @@
             <!-- Pagination -->
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" tabindex="-1">Previous</a>
+                    </li>
+                    {% else %}
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1">Previous</a>
                     </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
                     <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">Next</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
                         <a class="page-link" href="#">Next</a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
+
         </div>
     </section>
 {% endblock content %}
